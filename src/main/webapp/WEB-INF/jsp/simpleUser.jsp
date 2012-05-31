@@ -9,8 +9,8 @@
 <script type="text/javascript">
 	var contexPath = "<%=request.getContextPath() %>";
 </script>
-<script src="<%=request.getContextPath() %>/js/user.js"></script>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style/app.css">
+<script src="<%=request.getContextPath() %>/js/validation.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style/main.css">
 </head>
 <body>
 <h1>Add User</h1>
