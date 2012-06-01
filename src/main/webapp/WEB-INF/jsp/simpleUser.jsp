@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -14,23 +20,23 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style/main.css">
 </head>
 <body>
-<!-- <h1>Add User</h1>
-	<table>
-		<tr><td colspan="2"><div id="error" class="error"></div></td></tr>
-		<tr><td>Enter your name : </td><td> <input type="text" id="name" ><br/></td></tr>
-		<tr><td colspan="2"><input type="button" value="Add Users" onclick="doAjaxPost()"><br/></td></tr>
-		<tr><td colspan="2"><div id="info" class="success"></div></td></tr>
-	</table> -->
 
 <div class="container" style="padding-top: 50px;">
 
 <!-- Bootstrap form -->
-<form class="form-horizontal" id="add-user-form">
+<form:form modelAttribute="user" class="form-horizontal" id="add-user-form">
 	<fieldset>
-		<div class="control-group" id="name">
-			<label class="control-label">Enter your name:</label>
+		<div class="control-group" id="firstName">
+			<label class="control-label">Enter your first name:</label>
 			<div class="controls">
-				<input type="text" name="name">
+				<form:input path="firstName"/>
+				<span class="help-inline"></span>
+			</div>
+		</div>
+		<div class="control-group" id="lastName">
+			<label class="control-label">Enter your last name:</label>
+			<div class="controls">
+				<form:input path="lastName"/>
 				<span class="help-inline"></span>
 			</div>
 		</div>
@@ -39,7 +45,7 @@
 			<button type="reset" class="btn">Cancel</button>
 		</div>
 	</fieldset>
-</form>
+</form:form>
 
 </div>
 
@@ -48,7 +54,8 @@
 		var $form = $('#add-user-form');
 		$form.bind('submit', function() {
 			// Ajax validation
-			$.post(contexPath + '/simpleUser.htm', 'name=' + $form.find('input[name=name]').val(), function(response) {
+			$.post(contexPath + '/simpleUser.htm', {'firstName=' + $form.find('input[name=firstName]').val(), 
+				'lastName=' + $form.find('input[name=lastName]').val()}, function(response) {
 				if (response.status == 'FAIL') {
 					for (var i = 0; i < response.result.length; i++) {
 						var item = response.result[i];

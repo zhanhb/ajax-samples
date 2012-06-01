@@ -9,6 +9,7 @@ import model.JsonResponse;
 import model.SimpleUser;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +23,8 @@ public class UserController {
 	private List<SimpleUser> userList = new ArrayList<SimpleUser>(); 
 	
 	@RequestMapping(value="/simpleUser",method=RequestMethod.GET)
-	public String showForm(){
+	public String showForm(Model model){
+		model.addAttribute("user", new SimpleUser());
 		return "simpleUser";
 	}
 	
