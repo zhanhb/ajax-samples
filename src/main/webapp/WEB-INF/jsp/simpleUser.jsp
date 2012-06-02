@@ -23,21 +23,24 @@
 
 <div class="container" style="padding-top: 50px;">
 
+<spring:url value="/simpleUser.htm" var="formUrl" />
+<spring:url value="/simpleUser.json" var="formJsonUrl" />
+
 <!-- Bootstrap form -->
-<form:form modelAttribute="user" class="form-horizontal" id="add-user-form" action="">
+<form:form modelAttribute="user" class="form-horizontal" id="add-user-form" action="${formUrl}">
 	<fieldset>
 		<div class="control-group" id="firstName">
 			<label class="control-label">Enter your first name:</label>
 			<div class="controls">
 				<form:input path="firstName"/>
-				<span class="help-inline"></span>
+				<span class="help-inline"><form:errors path="firstName"/></span>
 			</div>
 		</div>
 		<div class="control-group" id="lastName">
 			<label class="control-label">Enter your last name:</label>
 			<div class="controls">
 				<form:input path="lastName"/>
-				<span class="help-inline"></span>
+				<span class="help-inline"><form:errors path="lastName"/></span>
 			</div>
 		</div>
 		<div class="form-actions">
@@ -58,7 +61,7 @@
 		}
 		return data;
 	}
-	
+		
 	$(document).ready(function() {
 		var $form = $('#add-user-form');
 		$form.bind('submit', function(e) {
@@ -66,7 +69,10 @@
 			var $inputs = $form.find('input');
 			var data = collectFormData($inputs);
 			
-			$.post(contexPath + '/simpleUser.htm', data, function(response) {
+			$.post('${formJsonUrl}', data, function(response) {
+				$form.find('.control-group').removeClass('error');
+				$form.find('.help-inline').empty();
+				
 				if (response.status == 'FAIL') {
 					for (var i = 0; i < response.result.length; i++) {
 						var item = response.result[i];
@@ -74,9 +80,6 @@
 						$controlGroup.addClass('error');
 						$controlGroup.find('.help-inline').html(item.message);
 					}
-				} else {
-					$form.find('.control-group').removeClass('error');
-					$form.find('.help-inline').empty();
 				}
 			}, 'json');
 			

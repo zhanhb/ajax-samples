@@ -25,11 +25,11 @@ public class UserController {
 	@RequestMapping(value="/simpleUser",method=RequestMethod.GET)
 	public String showForm(Model model){
 		model.addAttribute("user", new SimpleUser());
-		return "simpleUser";
+		return "simpleUserWithTag";
 	}
 	
-	@RequestMapping(value="/simpleUser",method=RequestMethod.POST)
-	public @ResponseBody JsonResponse addUser(@ModelAttribute(value="user") @Valid SimpleUser user, BindingResult result ){
+	@RequestMapping(value="/simpleUser.json",method=RequestMethod.POST)
+	public @ResponseBody JsonResponse validateUserJson(@ModelAttribute(value="user") @Valid SimpleUser user, BindingResult result ){
 		JsonResponse res = new JsonResponse();
 		if(!result.hasErrors()){
 			userList.add(user);
@@ -49,4 +49,8 @@ public class UserController {
 		return res;
 	}
 
+	@RequestMapping(value="/simpleUser.htm",method=RequestMethod.POST)
+	public String validateUser(@ModelAttribute(value="user") @Valid SimpleUser user, BindingResult result ){
+		return "simpleUserWithTag";
+	}
 }
