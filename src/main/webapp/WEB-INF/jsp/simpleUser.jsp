@@ -24,7 +24,7 @@
 <div class="container" style="padding-top: 50px;">
 
 <!-- Bootstrap form -->
-<form:form modelAttribute="user" class="form-horizontal" id="add-user-form">
+<form:form modelAttribute="user" class="form-horizontal" id="add-user-form" action="">
 	<fieldset>
 		<div class="control-group" id="firstName">
 			<label class="control-label">Enter your first name:</label>
@@ -50,12 +50,23 @@
 </div>
 
 <script type="text/javascript">
+	function collectFormData(fields) {
+		var data = {};
+		for (var i = 0; i < fields.length; i++) {
+			var $item = $(fields[i]);
+			data[$item.attr('name')] = $item.val();
+		}
+		return data;
+	}
+	
 	$(document).ready(function() {
 		var $form = $('#add-user-form');
-		$form.bind('submit', function() {
+		$form.bind('submit', function(e) {
 			// Ajax validation
-			$.post(contexPath + '/simpleUser.htm', {'firstName=' + $form.find('input[name=firstName]').val(), 
-				'lastName=' + $form.find('input[name=lastName]').val()}, function(response) {
+			var $inputs = $form.find('input');
+			var data = collectFormData($inputs);
+			
+			$.post(contexPath + '/simpleUser.htm', data, function(response) {
 				if (response.status == 'FAIL') {
 					for (var i = 0; i < response.result.length; i++) {
 						var item = response.result[i];
@@ -68,8 +79,10 @@
 					$form.find('.help-inline').empty();
 				}
 			}, 'json');
+			
+			e.preventDefault();
 			return false;
-		})
+		});
 	});
 </script>
 
