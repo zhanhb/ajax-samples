@@ -6,7 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import model.JsonResponse;
-import model.SimpleUser;
+import model.User;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,22 +19,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-public class UserController {
-	private List<SimpleUser> userList = new ArrayList<SimpleUser>(); 
+public class AjaxController {
 	
-	@RequestMapping(value="/simpleUser",method=RequestMethod.GET)
-	public String showForm(Model model){
-		model.addAttribute("user", new SimpleUser());
-		return "simpleUserWithTag";
+	@RequestMapping(value="/userAjax",method=RequestMethod.GET)
+	public String showFormAjax(Model model){
+		model.addAttribute("user", new User());
+		return "02-ajax/userForm";
 	}
 	
-	@RequestMapping(value="/simpleUser.json",method=RequestMethod.POST)
-	public @ResponseBody JsonResponse validateUserJson(@ModelAttribute(value="user") @Valid SimpleUser user, BindingResult result ){
+	@RequestMapping(value="/userAjax.json",method=RequestMethod.POST)
+	public @ResponseBody JsonResponse processFormAjaxJson(Model model, @ModelAttribute(value="user") @Valid User user, BindingResult result ){
 		JsonResponse res = new JsonResponse();
 		if(!result.hasErrors()){
-			userList.add(user);
 			res.setStatus("SUCCESS");
-			res.setResult(userList);
+			model.addAttribute("successMessage", "Congratulations your form is valid");
 		}else{
 			res.setStatus("FAIL");
 			List<FieldError> allErrors = result.getFieldErrors();
@@ -49,8 +47,8 @@ public class UserController {
 		return res;
 	}
 
-	@RequestMapping(value="/simpleUser.htm",method=RequestMethod.POST)
-	public String validateUser(@ModelAttribute(value="user") @Valid SimpleUser user, BindingResult result ){
-		return "simpleUserWithTag";
+	@RequestMapping(value="/userAjax.htm",method=RequestMethod.POST)
+	public String processFormAjax(@ModelAttribute(value="user") @Valid User user, BindingResult result ){
+		return "02-ajax/userForm";
 	}
 }

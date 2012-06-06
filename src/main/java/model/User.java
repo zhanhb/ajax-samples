@@ -2,13 +2,13 @@ package model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class SimpleUser {
+public class User {
 	
 	@NotEmpty
-	private String firstName = null;
+	private String firstName;
 	
 	@NotEmpty
-	private String lastName = null;
+	private String lastName;
 
 	public String getFirstName() {
 		return firstName;
