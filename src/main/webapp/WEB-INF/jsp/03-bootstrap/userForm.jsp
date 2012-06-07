@@ -16,7 +16,7 @@
 		<link href="${bootstrapUrl}" rel="stylesheet">
 		
 		<spring:url value="/js/jquery.js" var="jqueryUrl" />
-		<script src="${jqueryUrl}/js/jquery.js"></script>
+		<script src="${jqueryUrl}"></script>
 	</head>
 	<body>
 
@@ -77,6 +77,7 @@
 					$.post('${formJsonUrl}', data, function(response) {
 						$form.find('.control-group').removeClass('error');
 						$form.find('.help-inline').empty();
+						$form.find('.alert').remove();
 						
 						if (response.status == 'FAIL') {
 							for (var i = 0; i < response.result.length; i++) {
@@ -85,6 +86,10 @@
 								$controlGroup.addClass('error');
 								$controlGroup.find('.help-inline').html(item.message);
 							}
+						} else {
+							var $alert = $('<div class="alert alert-success"></div>');
+							$alert.html(response.result);
+							$alert.prependTo($form);
 						}
 					}, 'json');
 					
