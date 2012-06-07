@@ -32,7 +32,7 @@ public class AjaxController {
 		JsonResponse res = new JsonResponse();
 		if(!result.hasErrors()){
 			res.setStatus("SUCCESS");
-			model.addAttribute("successMessage", "Congratulations your form is valid");
+			res.setResult("Congratulations your form is valid");
 		}else{
 			res.setStatus("FAIL");
 			List<FieldError> allErrors = result.getFieldErrors();
