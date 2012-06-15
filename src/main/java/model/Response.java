@@ -1,6 +1,6 @@
 package model;
 
-public class JsonResponse {
+public class Response {
 	private String status = null;
 	private Object result = null;
 	public String getStatus() {

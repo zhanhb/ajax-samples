@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import model.JsonResponse;
+import model.Response;
 import model.User;
 
 import org.springframework.stereotype.Controller;
@@ -28,8 +28,8 @@ public class AjaxBootstrapController {
 	}
 	
 	@RequestMapping(value="/userAjaxBootstrap.json",method=RequestMethod.POST)
-	public @ResponseBody JsonResponse processFormAjaxJson(Model model, @ModelAttribute(value="user") @Valid User user, BindingResult result ){
-		JsonResponse res = new JsonResponse();
+	public @ResponseBody Response processFormAjaxJson(Model model, @ModelAttribute(value="user") @Valid User user, BindingResult result ){
+		Response res = new Response();
 		if(!result.hasErrors()){
 			res.setStatus("SUCCESS");
 			res.setResult("Congratulations your form is valid");

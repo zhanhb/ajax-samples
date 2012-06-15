@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import model.JsonResponse;
+import model.Response;
 import model.User;
 
 import org.springframework.stereotype.Controller;
@@ -28,12 +28,9 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="/userAjax.json",method=RequestMethod.POST)
-	public @ResponseBody JsonResponse processFormAjaxJson(Model model, @ModelAttribute(value="user") @Valid User user, BindingResult result ){
-		JsonResponse res = new JsonResponse();
-		if(!result.hasErrors()){
-			res.setStatus("SUCCESS");
-			res.setResult("Congratulations your form is valid");
-		}else{
+	public @ResponseBody Response processFormAjaxJson(Model model, @ModelAttribute(value="user") @Valid User user, BindingResult result ){
+		Response res = new Response();
+		if(result.hasErrors()){
 			res.setStatus("FAIL");
 			List<FieldError> allErrors = result.getFieldErrors();
 			List<ErrorMessage> errorMesages = new ArrayList<ErrorMessage>();
@@ -41,7 +38,10 @@ public class AjaxController {
 				errorMesages.add(new ErrorMessage(objectError.getField(), objectError.getField() + "  " + objectError.getDefaultMessage()));
 			}
 			res.setResult(errorMesages);
-			
+
+		}else{
+			res.setStatus("SUCCESS");
+			res.setResult("Congratulations your form is valid");		
 		}
 		
 		return res;
