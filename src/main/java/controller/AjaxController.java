@@ -33,15 +33,14 @@ public class AjaxController {
 		if(result.hasErrors()){
 			res.setStatus("FAIL");
 			List<FieldError> allErrors = result.getFieldErrors();
-			List<ErrorMessage> errorMesages = new ArrayList<ErrorMessage>();
+			List<UserErrorMessage> errorMesages = new ArrayList<UserErrorMessage>();
 			for (FieldError objectError : allErrors) {
-				errorMesages.add(new ErrorMessage(objectError.getField(), objectError.getField() + "  " + objectError.getDefaultMessage()));
+				errorMesages.add(new UserErrorMessage(objectError.getField(), objectError.getField() + "  " + objectError.getDefaultMessage()));
 			}
 			res.setResult(errorMesages);
 
 		}else{
 			res.setStatus("SUCCESS");
-			res.setResult("Congratulations your form is valid");		
 		}
 		
 		return res;
@@ -49,6 +48,11 @@ public class AjaxController {
 
 	@RequestMapping(value="/userAjax.htm",method=RequestMethod.POST)
 	public String processFormAjax(@ModelAttribute(value="user") @Valid User user, BindingResult result ){
-		return "02-ajax/userForm";
+		if(result.hasErrors()) {
+			return "02-no-ajax/userForm";
+		} 
+		else {
+			return "success";
+		}
 	}
 }

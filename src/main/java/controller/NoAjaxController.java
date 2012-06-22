@@ -22,10 +22,12 @@ public class NoAjaxController {
 	
 	@RequestMapping(value="/userNoAjax",method=RequestMethod.POST)
 	public String processFormNoAjax(Model model, @Valid User user, BindingResult result ){
-		if(!result.hasErrors()) {
-			model.addAttribute("successMessage", "Congratulations your form is valid");
+		if(result.hasErrors()) {
+			return "01-no-ajax/userForm";
+		} 
+		else {
+			return "success";
 		}
-		return "01-no-ajax/userForm";
 	}
 	
 }

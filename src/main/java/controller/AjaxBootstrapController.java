@@ -36,9 +36,9 @@ public class AjaxBootstrapController {
 		}else{
 			res.setStatus("FAIL");
 			List<FieldError> allErrors = result.getFieldErrors();
-			List<ErrorMessage> errorMesages = new ArrayList<ErrorMessage>();
+			List<UserErrorMessage> errorMesages = new ArrayList<UserErrorMessage>();
 			for (FieldError objectError : allErrors) {
-				errorMesages.add(new ErrorMessage(objectError.getField(), objectError.getField() + "  " + objectError.getDefaultMessage()));
+				errorMesages.add(new UserErrorMessage(objectError.getField(), objectError.getField() + "  " + objectError.getDefaultMessage()));
 			}
 			res.setResult(errorMesages);
 			
