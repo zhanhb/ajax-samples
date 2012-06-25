@@ -21,12 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AjaxBootstrapController {
 	
-	@RequestMapping(value="/userAjaxBootstrap",method=RequestMethod.GET)
-	public String showFormAjax(Model model){
-		model.addAttribute("user", new User());
-		return "03-bootstrap/userForm";
-	}
-	
 	@RequestMapping(value="/userAjaxBootstrap.json",method=RequestMethod.POST)
 	public @ResponseBody Response processFormAjaxJson(Model model, @ModelAttribute(value="user") @Valid User user, BindingResult result ){
 		Response res = new Response();
@@ -46,9 +40,26 @@ public class AjaxBootstrapController {
 		
 		return res;
 	}
+	
+	@RequestMapping(value="/userAjaxBootstrap",method=RequestMethod.GET)
+	public String showFormBootstrap(Model model){
+		model.addAttribute("user", new User());
+		return "03-bootstrap/userForm";
+	}
 
 	@RequestMapping(value="/userAjaxBootstrap.htm",method=RequestMethod.POST)
-	public String processFormAjax(@ModelAttribute(value="user") @Valid User user, BindingResult result ){
+	public String processFormBootstrap(@ModelAttribute(value="user") @Valid User user, BindingResult result ){
 		return "03-bootstrap/userForm";
+	}
+	
+	@RequestMapping(value="/userAjaxCustomTag",method=RequestMethod.GET)
+	public String showFormCustomTag(Model model){
+		model.addAttribute("user", new User());
+		return "04-custom-tag/userForm";
+	}
+
+	@RequestMapping(value="/userAjaxCustomTag.htm",method=RequestMethod.POST)
+	public String processFormAjax(@ModelAttribute(value="user") @Valid User user, BindingResult result ){
+		return "04-custom-tag/userForm";
 	}
 }

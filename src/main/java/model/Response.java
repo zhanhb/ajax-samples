@@ -1,8 +1,9 @@
 package model;
 
 public class Response {
-	private String status = null;
-	private Object result = null;
+	private String status;
+	private Object result;
+	
 	public String getStatus() {
 		return status;
 	}

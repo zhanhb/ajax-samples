@@ -22,11 +22,7 @@
 
 		<div class="container" style="padding-top: 50px;">
 			<jsp:include page="../menu.jsp"/>
-						
-			<c:if test="${successMessage !=  null}">
-				<h1>${successMessage}</h1>
-			</c:if>
-				
+										
 			<spring:url value="/userAjaxBootstrap.htm" var="formUrl" />
 			<spring:url value="/userAjaxBootstrap.json" var="formJsonUrl" />
 	
