@@ -5,7 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import model.Response;
+import model.ErrorMessage;
+import model.ValidationResponse;
 import model.User;
 
 import org.springframework.stereotype.Controller;
@@ -28,16 +29,16 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="/userAjax.json",method=RequestMethod.POST)
-	public @ResponseBody Response processFormAjaxJson(Model model, @ModelAttribute(value="user") @Valid User user, BindingResult result ){
-		Response res = new Response();
+	public @ResponseBody ValidationResponse processFormAjaxJson(Model model, @ModelAttribute(value="user") @Valid User user, BindingResult result ){
+		ValidationResponse res = new ValidationResponse();
 		if(result.hasErrors()){
 			res.setStatus("FAIL");
 			List<FieldError> allErrors = result.getFieldErrors();
-			List<UserErrorMessage> errorMesages = new ArrayList<UserErrorMessage>();
+			List<ErrorMessage> errorMesages = new ArrayList<ErrorMessage>();
 			for (FieldError objectError : allErrors) {
-				errorMesages.add(new UserErrorMessage(objectError.getField(), objectError.getField() + "  " + objectError.getDefaultMessage()));
+				errorMesages.add(new ErrorMessage(objectError.getField(), objectError.getField() + "  " + objectError.getDefaultMessage()));
 			}
-			res.setResult(errorMesages);
+			res.setErrorMessageList(errorMesages);
 
 		}else{
 			res.setStatus("SUCCESS");

@@ -25,15 +25,15 @@
 						$form.find('.alert').remove();
 						
 						if (response.status == 'FAIL') {
-							for (var i = 0; i < response.result.length; i++) {
-								var item = response.result[i];
+							for (var i = 0; i < response.errorMessageList.length; i++) {
+								var item = response.errorMessageList[i];
 								var $controlGroup = $('#' + item.fieldName);
 								$controlGroup.addClass('error');
 								$controlGroup.find('.help-inline').html(item.message);
 							}
 						} else {
 							var $alert = $('<div class="alert alert-success"></div>');
-							$alert.html(response.result);
+							$alert.html(response.errorMessageList);
 							$alert.prependTo($form);
 						}
 					}, 'json');

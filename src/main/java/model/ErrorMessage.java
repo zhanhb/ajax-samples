@@ -1,11 +1,11 @@
-package controller;
+package model;
 
-public class UserErrorMessage {
+public class ErrorMessage {
 
 	private String fieldName;
 	private String message;
 	
-	public UserErrorMessage(String fieldName, String message) {
+	public ErrorMessage(String fieldName, String message) {
 		this.fieldName = fieldName;
 		this.message = message;
 	}
