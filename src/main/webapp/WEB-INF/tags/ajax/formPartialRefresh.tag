@@ -32,9 +32,8 @@
 								$controlGroup.find('.help-inline').html(item.message);
 							}
 						} else {
-							var $alert = $('<div class="alert alert-success"></div>');
-							$alert.html(response.errorMessageList);
-							$alert.prependTo($form);
+							$form.unbind('submit');
+							$form.submit();
 						}
 					}, 'json');
 					

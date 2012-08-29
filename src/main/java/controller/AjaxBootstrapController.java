@@ -49,7 +49,12 @@ public class AjaxBootstrapController {
 
 	@RequestMapping(value="/userAjaxBootstrap.htm",method=RequestMethod.POST)
 	public String processFormBootstrap(@ModelAttribute(value="user") @Valid User user, BindingResult result ){
-		return "03-bootstrap/userForm";
+		if(result.hasErrors()) {
+			return "03-bootstrap/userForm";
+		} 
+		else {
+			return "success";
+		}
 	}
 	
 	@RequestMapping(value="/userAjaxCustomTag",method=RequestMethod.GET)
@@ -60,6 +65,11 @@ public class AjaxBootstrapController {
 
 	@RequestMapping(value="/userAjaxCustomTag.htm",method=RequestMethod.POST)
 	public String processFormAjax(@ModelAttribute(value="user") @Valid User user, BindingResult result ){
-		return "04-custom-tag/userForm";
+		if(result.hasErrors()) {
+			return "04-custom-tag/userForm";
+		} 
+		else {
+			return "success";
+		}
 	}
 }
