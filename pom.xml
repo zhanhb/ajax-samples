@@ -15,7 +15,9 @@
 		<spring.framework.version>3.1.1.RELEASE</spring.framework.version>
  		<jackson.version>1.9.4</jackson.version>
  		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
-	</properties>
+		<slf4j.version>1.7.0</slf4j.version>
+ 		<log4j.version>1.2.17</log4j.version>
+ 	</properties>
 
 	<build>
 		<plugins>
@@ -41,19 +43,6 @@
 					</sourceIncludes>
 				</configuration>
 			</plugin>
-			<!--<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
-				<configuration>
-					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>-->
 		</plugins>
 	</build>
 
@@ -83,6 +72,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.framework.version}</version>
+			<exclusions>
+	         <exclusion>
+	            <groupId>commons-logging</groupId>
+	            <artifactId>commons-logging</artifactId>
+	         </exclusion>
+	      </exclusions>
 		</dependency>
 
 
@@ -122,6 +117,36 @@
 				<artifactId>hibernate-validator</artifactId>
 				<version>${hibernate.validator.version}</version>
 			</dependency>
+			
+			<!-- Logging -->
+			<dependency>
+		      <groupId>org.slf4j</groupId>
+		      <artifactId>jcl-over-slf4j</artifactId>
+		      <version>${slf4j.version}</version>
+		      <scope>runtime</scope>
+		   </dependency>
+		   
+		   <dependency>
+		      <groupId>org.slf4j</groupId>
+		      <artifactId>slf4j-api</artifactId>
+		      <version>${slf4j.version}</version>
+		      <scope>runtime</scope>
+		   </dependency>
+		   
+		   <dependency>
+		      <groupId>org.slf4j</groupId>
+		      <artifactId>slf4j-log4j12</artifactId>
+		      <version>${slf4j.version}</version>
+		      <scope>runtime</scope>
+		   </dependency>
+		   
+		   <dependency>
+		      <groupId>log4j</groupId>
+		      <artifactId>log4j</artifactId>
+		      <version>${log4j.version}</version>
+		      <scope>runtime</scope>
+		   </dependency>
+			
 	</dependencies>
 	
 </project>

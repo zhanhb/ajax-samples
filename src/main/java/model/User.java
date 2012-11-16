@@ -1,5 +1,7 @@
 package model;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class User {
@@ -9,6 +11,17 @@ public class User {
 	
 	@NotEmpty
 	private String lastName;
+	
+	@NotNull
+	private Integer age;
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
 
 	public String getFirstName() {
 		return firstName;
