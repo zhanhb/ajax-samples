@@ -6,10 +6,10 @@ xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:form="http://www.springframework.
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />  
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
 		<title>Create a new User</title>
 		<spring:url value="/style" var="styleUrl" />
-		<link href="${styleUrl}/app.css" rel="stylesheet">
+		<link href="${styleUrl}/app.css" rel="stylesheet"></link>
 	</head>
 	<body>
 		<jsp:include page="menu.jspx"/>
