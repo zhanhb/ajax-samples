@@ -7,7 +7,7 @@ xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:form="http://www.springframework.
 	
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-		<title>Add User</title>
+		<title>Add User</title> 
 		
 		<spring:url value="/bootstrap/css/bootstrap.min.css" var="bootstrapUrl" />
 		<link href="${bootstrapUrl}" rel="stylesheet"/>
@@ -28,14 +28,14 @@ xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:form="http://www.springframework.
 				id="add-user-form" action="${formUrl}">
 				<fieldset>
 					<div class="control-group" id="firstName">
-						<label class="control-label">Enter your first name:</label>
+						<label class="control-label">First name</label>
 						<div class="controls">
 							<form:input path="firstName" />
 							<span class="help-inline"><form:errors path="firstName" /></span>
 						</div>
 					</div>
 					<div class="control-group" id="lastName">
-						<label class="control-label">Enter your last name:</label>
+						<label class="control-label">Last name</label>
 						<div class="controls">
 							<form:input path="lastName" />
 							<span class="help-inline"><form:errors path="lastName" /></span>
