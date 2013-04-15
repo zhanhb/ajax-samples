@@ -12,11 +12,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.framework.version>3.1.2.RELEASE</spring.framework.version>
+		<spring.framework.version>3.2.2.RELEASE</spring.framework.version>
  		<jackson.version>1.9.4</jackson.version>
  		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
-		<slf4j.version>1.7.0</slf4j.version>
- 		<log4j.version>1.2.17</log4j.version>
+		<logback.version>1.0.9</logback.version>
+		<slf4j.version>1.7.2</slf4j.version>
  		<junit.version>4.10</junit.version>
  	</properties>
 
@@ -113,34 +113,19 @@
 				<version>${hibernate.validator.version}</version>
 			</dependency>
 			
-			<!-- Logging -->
-			<dependency>
-		      <groupId>org.slf4j</groupId>
-		      <artifactId>jcl-over-slf4j</artifactId>
-		      <version>${slf4j.version}</version>
-		      <scope>runtime</scope>
-		   </dependency>
-		   
-		   <dependency>
-		      <groupId>org.slf4j</groupId>
-		      <artifactId>slf4j-api</artifactId>
-		      <version>${slf4j.version}</version>
-		      <scope>runtime</scope>
-		   </dependency>
-		   
-		   <dependency>
-		      <groupId>org.slf4j</groupId>
-		      <artifactId>slf4j-log4j12</artifactId>
-		      <version>${slf4j.version}</version>
-		      <scope>runtime</scope>
-		   </dependency>
-		   
-		   <dependency>
-		      <groupId>log4j</groupId>
-		      <artifactId>log4j</artifactId>
-		      <version>${log4j.version}</version>
-		      <scope>runtime</scope>
-		   </dependency>
+		<!-- Logging with SLF4J & LogBack -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>runtime</scope>
+		</dependency>
 			
 	</dependencies>
 	
