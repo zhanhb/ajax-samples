@@ -5,7 +5,7 @@
 <%@ attribute name="formUrl" required="true" rtexprvalue="true" %>
 <spring:url value="${formUrl}" var="processedFormUrl" />
 <form:form modelAttribute="${modelAttribute}" id="${id}" action="${processedFormUrl}" class="form-horizontal">
-		<fieldset>
-	       <jsp:doBody />
-	    </fieldset>
+    <fieldset>
+        <jsp:doBody />
+    </fieldset>
 </form:form>

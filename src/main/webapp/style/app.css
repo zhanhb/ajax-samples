@@ -1,9 +1,9 @@
 .error{
-	color: red;
+    color: red;
 }
 
 .success{
-	color: green;
+    color: green;
 }
 
 form fieldset { padding: 20px; }

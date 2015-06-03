@@ -1,44 +1,41 @@
 package model;
 
 import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class User {
-	
-	@NotEmpty
-	private String firstName;
-	
-	@NotEmpty
-	private String lastName;
-	
-	@NotNull
-	private Integer age;
 
-	public Integer getAge() {
-		return age;
-	}
+    @NotEmpty
+    private String firstName;
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+    @NotEmpty
+    private String lastName;
 
-	public String getFirstName() {
-		return firstName;
-	}
+    @NotNull
+    private Integer age;
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public Integer getAge() {
+        return age;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	
-	
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
 }
